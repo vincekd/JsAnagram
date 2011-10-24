@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+ </head>
+<body style="background-color:lightblue;" onload="onload();">
+<input type="text" id="in">
+<button type="button" onclick="sub()">Submit</button>
+<br><br>
+<div>
+<table border=1 style="border-collapse:collapse;border:3px solid black;background-color:white;text-align:center;">
+<thead>
+<tr><th>Word</th><th>Score</th></tr>
+</thead>
+<tbody id="add">
+<tr><td id="load" style="width:200px;" colspan="2">...Loading...</td></tr>
+</tbody>
+</table>
+</div>
+</body>
+<script type="text/javascript" src="Anagram.js"></script>
+<script type="text/javascript" src="/js/jquery.js"></script>
+<script type="text/javascript">
+var sync = false;
+ if ( window.localStorage.dictvd == undefined ) {
+  $.ajax ({"type":"GET",
+          "url" : "enable1.txt",  
+          "async":true,
+	  "success" : function(resp){
+	    window.localStorage.setItem("dictvd", resp );
+	    sync = true;
+	    onload();
+	  }
+	  });
+ } else {
+  sync = true;
+}
+var a;
+function onload ( ) {  
+ if ( sync ) {
+  a = new AnagramSolver ( window.localStorage.dictvd );
+  $("#load").text("Ready");
+ }
+}
+function sub ( ) {
+
+var d = $("#in").attr("value");
+$("#add").html("");
+var c = a.makeAnagrams( d );
+
+$("#add").html("");
+c.forEach ( function($ss){ 
+  $("#add").append("<tr><td style='width:200px;'>" + $ss.data + "</td><td style='width:200px;'>" + $ss.score + "</td></tr>");
+});
+}
+$("#in").bind("keypress", function( event ) {
+  if ( event.keyCode == 13 ) {
+    sub();
+    return;
+  }
+});
+</script>
+</html>

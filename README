@@ -1,0 +1,1 @@
+Javascript anagram solver.  Uses the Words With Friends dictionary to solve anagrams.  Uses localStorage to store the dictionary.

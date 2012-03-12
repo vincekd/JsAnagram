@@ -35,7 +35,7 @@ function AnagramSolver ( txt ) {
 		for ( var i = 0; i < ss.length; i++ ) {
 		    if ( (ss[i] + ap[lev-1][j].data).match ( new RegExp ( ss[i], "g" ) ).length <= s.match( new RegExp ( ss[i], "g" ) ).length ){
 			var look = tree.lookup ( ss[i], ap[lev-1][j] );
-			if ( look != -1 ){
+			if ( look !== -1 ){
 			    if ( look.childs > 0 ){
 				ap[lev].push ( look );
 			    }

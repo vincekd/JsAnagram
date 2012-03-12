@@ -3,6 +3,6 @@ CACHE MANIFEST
 
 CACHE:
 anagram.html
-/qc/javascript/test/Anagram.js
-/qc/javascript/jquery-1.6.2.min.js
-dictionary/enable1.txt
+Anagram.js
+/js/jquery.js
+enable1.txt
